@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require('config.php');
 
 	$prefilled = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 	<link rel="icon" href="../favicon.ico">
 
-	<title>Email Signature Generator</title>
+	<title>Generátor emailových podpisů</title>
 
 	<link href="bootstrap.min.css" rel="stylesheet">
 
@@ -26,62 +26,61 @@
 		<div class="row">
 			<div class="col">
 				<h1>Mail Signature Generator</h1>
-				<p class="lead">Please fill out the following fields and click on "Generate".</p>
+				<p class="lead">Prosím vyplňte následující políčka a klikněte na "Generovat".</p>
 			</div>
 		</div>
 
 		<form class="form-inline row needs-validation alert alert-secondary align-items-start" action="" method="get">
 			<div class="col-12 col-md">
-				<h3>Name & Position</h3>
+				<h3>Jméno a pozice</h3>
 				<div class="mb-3">
-					<input type="text" class="form-control" name="name" placeholder="first & last name"
-						value="<?php echo $_GET['name']; ?>" required>
-					<small class="form-text text-muted">Further instructions?</small>
+					<input type="text" class="form-control" name="name" placeholder="Jméno a příjmení"
+						value="<?php if(isset($_GET['name'])){echo $_GET['name'];}; ?>" required>
 					<div class="invalid-feedback">
-						Name is required!
+						Jméno je vyžadované!
 					</div>
 				</div>
 				<div class="mb-3">
-					<input type="text" class="form-control" name="subtitle" placeholder="Your position"
-						value="<?php echo $_GET['subtitle']; ?>">
-					<small class="form-text text-muted">z.B. IT, Support,...</small>
+					<input type="text" class="form-control" name="subtitle" placeholder="Vaše pozice"
+						value="<?php if(isset($_GET['subtitle'])){echo $_GET['subtitle'];}; ?>">
+					<small class="form-text text-muted">např. IT, podpora,...</small>
 				</div>
 			</div>
 			<div class=" col-12 col-md">
-				<h3>Contact infos</h3>
+				<h3>Kontaktní informace</h3>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text"><?php echo $phoneprefix; ?></span>
 					</div>
-					<input type="text" class="form-control" name="phoneextension" placeholder="Phone Extension"
-						value="<?php echo $_GET['phoneextension']; ?>">
+					<input type="text" class="form-control" name="phoneextension" placeholder="Telefon"
+						value="<?php if(isset($_GET['phoneextension'])){echo $_GET['phoneextension'];}; ?>">
 				</div>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text"><?php echo $phoneprefix; ?></span>
 					</div>
-					<input type="text" class="form-control" name="faxextension" placeholder="Fax extension"
-						value="<?php echo $_GET['faxextension']; ?>">
+					<input type="text" class="form-control" name="faxextension" placeholder="Fax"
+						value="<?php if(isset($_GET['faxextension'])){echo $_GET['faxextension'];}; ?>">
 				</div>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text">+49 </span>
+						<span class="input-group-text">+420 </span>
 					</div>
-					<input type="text" class="form-control" name="mobile" placeholder="mobilenumber"
-						value="<?php echo $_GET['mobile']; ?>">
+					<input type="text" class="form-control" name="mobile" placeholder="Mobil"
+						value="<?php if(isset($_GET['phoneextension'])){echo $_GET['mobile'];}; ?>">
 				</div>
-				<small class="form-text text-muted">With spaces after area code to increase legibility.</small>
+				<small class="form-text text-muted">s mezerou za předvolbou pro lepší čitelnost</small>
 			</div>
 
 			<?php
 				$banner = array_diff(scandir($files), array('..', '.'));
-				$select = $_GET['banner'];
-				
+				if(isset($_GET['phoneextension'])){$select = $_GET['banner'];};
+
 				if (!empty($banner)):
 			?>
 
 			<div class="col-12 col-md">
-				<h3>Banner (optional)</h3>
+				<h3>Obrázek (volitelně)</h3>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text">Link</span>
@@ -91,7 +90,7 @@
 				</div>
 				<div class="input-group mb-3">
 					<select class="custom-select" name="banner">
-						<option <?php echo ($select == "") ? 'selected ' : ''; ?>value="">No Banner</option>
+						<option <?php echo ($select == "") ? 'selected ' : ''; ?>value="">Žádný obrázek</option>
 						<?php foreach ($banner as $b):?>
 						<option value="<?php echo $b; ?>" <?php echo ($select == $b) ? ' selected' : ''; ?>>
 							<?php echo preg_replace('/\\.[^.\\s]{3,4}$/', '', $b);; ?></option>
@@ -102,7 +101,7 @@
 			<?php endif; ?>
 
 			<div class="col-12 text-right">
-				<button type="submit" class="btn btn-primary">Update Signatur</button>
+				<button type="submit" class="btn btn-primary">Aktualizovat podpis</button>
 			</div>
 		</form>
 
@@ -111,7 +110,7 @@
 
 		<div class="row mb-3">
 			<div class="col-12">
-				<h2>implement mail signature</h1>
+				<h2>Jak nastavit podpis</h1>
 			</div>
 			<div class="col-12">
 				<h3>Microsoft Outlook</h3>
@@ -172,7 +171,7 @@
 								</tr>
 								<?php $n = ($_GET['phoneextension'] == "") ? '0' : $_GET['phoneextension']; ?>
 								<tr>
-									<td width=25>Fon</td>
+									<td width=25>tel:</td>
 									<td><a href="tel:<?php echo $phonelinkprefix . $n; ?>" title="Call directly" width=300><?php echo $phoneprefix . ' ' . $n; ?></a></td>
 								</tr>
 								<?php if ($_GET['mobile']): ?>
@@ -196,10 +195,10 @@
 							<table>
 								<tr>
 									<td>
-										<p>Street 12<br />12345 Some City</p>
+										<p><?php echo $street; ?><br /><?php echo $city; ?></p>
 									</td>
 									<td>
-										<a style="text-decoration: none;" href="https://example.com/" title="Open Website"> <img
+										<a style="text-decoration: none;" href="https://example.com/" title="Otevřít odkaz"> <img
 												alt="Logo" src="https://example.com/assets/logo.jpg" width="100" height="100"></a>
 									</td>
 								</tr>
@@ -210,11 +209,11 @@
 						<td colspan="2">
 							<?php if ($_GET['banner'] == ""): ?>
 							Placeholder if no Banner is selected.
-							<?php else: 
+							<?php else:
 									$l = $_GET['link'];
 									echo ($l != "https://" && $l != "") ? '<a href="'.$l.'" title="Click for more informations">' : '';
 								?>
-							<img src="https://example.com/directory-specified-in-config-php/<?php echo $_GET['banner']; ?>"
+							<img src="./banner/<?php echo $_GET['banner']; ?>"
 								alt="" width="100%" style="width:100%" />
 							<?php echo ($l != "https://" && $l != "") ? '</a>' : ''; ?>
 							<?php endif; ?>
@@ -222,7 +221,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							Something more...
+							Další texty je možné psát tady...
 						</td>
 					</tr>
 					</tbody>

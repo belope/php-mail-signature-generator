@@ -1,4 +1,4 @@
 AuthType Basic
 AuthName "Firemní generátor podpisů"
-AuthUserFile /var/www/fullpath/signature/.htpasswd
+AuthUserFile /var/www/html/.htpasswd
 Require valid-user
