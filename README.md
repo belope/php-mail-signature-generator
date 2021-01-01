@@ -1,14 +1,15 @@
 # PHP Mail Signature Generate
 
-> To be hosted in your companies webserver to support every employee to generate its emailsignature for Apple Mail, iOS, Thunderbird, Microsoft Outlook and every other Mail-Client that supports HTML-Signatures.
+Český překlad projektu mmoollllee/php-mail-signature-generator 
+> Připravené k hostování na firemním webserveru aby si mohli zaměstnanci generovat svoje e-mailové podpisy pro Apple Mail, iOS, Thunderbird, Microsoft Outlook a všechny ostatní mailové klienty kteří podporují HTML podpisy.
 
-## How To Use
+## Jak používat
 
-1. Upload this repo to your webserver. e.g. `example.com/signature`
-2. Edit .htaccess and .htpasswd or secure the path with with other techniques
-3. Edit `config.php`
-4. Place files to be selected as Banner in the public directory defined in `$files`
-5. Set Up your HTML Signature Template with inline css. Test it in different mail clients.
-6. Hate Mail Clients for their HTML & CSS support
-7. Send every employer in need of a mail signature the link and credentials to the generator
-8. Show me how your mail signature looks! Happy to see working examples for beautiful mail signatures
+1. Nahrajte na Váš webserver. např. `priklad.cz/podpis`
+2. Upravte .htaccess and .htpasswd nebo zabezpečte přístup jinými metodami
+3. Upravte `config.php`
+4. Umístěte soubory které mají být nastaveny jako baner do veřejné složky definované v `$files`
+5. Upravte Váš vzor html podpisu s využitím inline css. Otestujte v různých mailových klientech.
+6. Nenáviďte mailové klienty za jejich "podporu" HTML a CSS
+7. Zašlete každému zaměstnanci který potřebuje mailový podpis odkaz a přístupové údaje ke generátoru.
+8. Ukažte mi jak Váš podpis vypadá! Rád uvidím funkční příklady krásných podpisů
